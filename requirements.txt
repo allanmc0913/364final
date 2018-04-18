@@ -2,6 +2,7 @@ Flask_Script==2.0.6
 Flask==0.10.1
 Flask_Login==0.4.1
 Werkzeug==0.9.6
+requests==2.5.3
 Flask_WTF==0.14.2
 requests_oauthlib==0.8.0
 requests==2.5.3
