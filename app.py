@@ -25,9 +25,9 @@ app.debug = True
 app.use_reloader = True
 app.config['SECRET_KEY'] = 'hardtoguessstring'
 app.config[
-    "SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost/final364"
-
-
+    "SQLALCHEMY_DATABASE_URI"] = "postgres://axakfrrkqriatf:d9618497f55fc5c18080a5ddfb7b826127021c5bcdf48fe264e81e9ad10a5445@ec2-54-163-240-54.compute-1.amazonaws.com:5432/d5pm76di938fk"
+#postgresql://localhost/final364
+#postgres://axakfrrkqriatf:d9618497f55fc5c18080a5ddfb7b826127021c5bcdf48fe264e81e9ad10a5445@ec2-54-163-240-54.compute-1.amazonaws.com:5432/d5pm76di938fk
 
 
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
