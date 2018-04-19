@@ -1,0 +1,17 @@
+<h1>{{ collection.name }}</h1>
+{% extends 'index.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+{% for t in tweets %}
+      <strong>{{ t.text }}</strong>
+      </br>
+    <br><br>
+{% endfor %}
+
+
+{% endblock %}

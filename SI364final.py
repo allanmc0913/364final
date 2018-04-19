@@ -25,7 +25,7 @@ app.debug = True
 app.use_reloader = True
 app.config['SECRET_KEY'] = 'hardtoguessstring'
 app.config[
-    "SQLALCHEMY_DATABASE_URI"] = "postgres://axakfrrkqriatf:d9618497f55fc5c18080a5ddfb7b826127021c5bcdf48fe264e81e9ad10a5445@ec2-54-163-240-54.compute-1.amazonaws.com:5432/d5pm76di938fk"
+    "SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost/final364"
 #postgresql://localhost/final364
 #postgres://axakfrrkqriatf:d9618497f55fc5c18080a5ddfb7b826127021c5bcdf48fe264e81e9ad10a5445@ec2-54-163-240-54.compute-1.amazonaws.com:5432/d5pm76di938fk
 
@@ -179,7 +179,8 @@ class CollectionCreateForm(FlaskForm):
             raise ValidationError("Collection Name must not be empty!")
 
 
-
+class DeleteButtonForm(FlaskForm):
+    submit = SubmitField('Delete')
 
 
 ###############################
@@ -367,20 +368,31 @@ def create_collection():
 @app.route('/collections', methods=["GET", "POST"])
 @login_required
 def collections():
-    collections = PersonalTweetCollection.filter_by(User_id=current_user.id).all()
-    return render_template("collections.html", collections=collections)
+    form = DeleteButtonForm()
+    collections = PersonalTweetCollection.query.filter_by(User_id=current_user.id).all()
+    return render_template("collections.html", collections=collections, form=form)
 
 
 #Route to view any collection by id without logging in, query personaltweetcollection by collection id number
 @app.route('/collection/<id_num>')
 def single_collection(id_num):
-    pass
+    id_num = int(id_num)
+    collection = PersonalTweetCollection.query.filter_by(id=id_num).first()
+    tweets=collection.tweets.all()
+    return render_template('collection.html', collection=collection, tweets=tweets)
 
 #Route to delete a collection, must sign in first, delete from PersonalTweetCollections table
-@app.route('/delete/<lst>', methods=["GET", "POST"])
+@app.route('/delete/<id_num>', methods=["GET", "POST"])
 @login_required
-def delete(lst):
-    pass
+def delete(id_num):
+    id_num = int(id_num)
+    collection = PersonalTweetCollection.query.filter_by(id=id_num).first()
+    db.session.delete(collection)
+    db.session.commit()
+    flash("Deleted Collection!")
+    return redirect(url_for('collections'))
+
+
 
 if __name__ == '__main__':
     db.create_all()

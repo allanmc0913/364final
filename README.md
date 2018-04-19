@@ -2,9 +2,9 @@
 
  **A user should be able to load http://localhost:5000 and see the first page they ought to see on the application.**
 
- Include navigation in base.html with links (using a href tags) that lead to every other page in the application that a user should be able to click on. (e.g. in the lecture examples from the Feb 9 lecture, like this )
+ **Include navigation in base.html with links (using a href tags) that lead to every other page in the application that a user should be able to click on. (e.g. in the lecture examples from the Feb 9 lecture, like this )**
 
- Ensure that all templates in the application inherit (using template inheritance, with extends) from base.html and include at least one additional block.
+ **Ensure that all templates in the application inherit (using template inheritance, with extends) from base.html and include at least one additional block.**
 
  **Must use user authentication (which should be based on the code you were provided to do this e.g. in HW4).**
 
@@ -16,9 +16,9 @@
 
  **At least one many:many relationship that works properly built between 2 models.**
 
- Successfully save data to each table.
+ **Successfully save data to each table.**
 
- Successfully query data from each of your models (so query at least one column, or all data, from every database table you have a model for) and use it to effect in the application (e.g. won't count if you make a query that has no effect on what you see, what is saved, or anything that happens in the app).
+ **Successfully query data from each of your models (so query at least one column, or all data, from every database table you have a model for) and use it to effect in the application (e.g. won't count if you make a query that has no effect on what you see, what is saved, or anything that happens in the app).**
 
  **At least one query of data using an .all() method and send the results of that query to a template.**
 
@@ -50,10 +50,10 @@
 
  Include at least one way to update items saved in the database in the application (like in HW5).
 
- Include at least one way to delete items saved in the database in the application (also like in HW5).
+ **Include at least one way to delete items saved in the database in the application (also like in HW5).**
 
  **Include at least one use of redirect.**
 
  **Include at least two uses of url_for. (HINT: Likely you'll need to use this several times, really.)**
 
- Have at least 5 view functions that are not included with the code we have provided. (But you may have more! Make sure you include ALL view functions in the app in the documentation and navigation as instructed above.)
+ **Have at least 5 view functions that are not included with the code we have provided. (But you may have more! Make sure you include ALL view functions in the app in the documentation and navigation as instructed above.)**

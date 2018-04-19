@@ -1,4 +1,4 @@
-<h1>My collections</h1>
+<h1>My Tweet collections</h1>
 
 {% extends 'index.html' %}
 
@@ -8,10 +8,25 @@
 
 {% block main_content %}
 
+{% if not collections %}
+There are no collections to show.
+{% else %}
 <ul>
 {% for c in collections %}
-    <li><a href="http://localhost:5000/collection/{{ c.id }}">{{ c.name }}</a></li>
+    <li>
+        <a href="http://localhost:5000/collection/{{ c.id }}">{{ c.name }}</a>
+        <form action="delete/{{ c.id }}" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.submit() }}
+        </form>
+    </li>
+
+
 {% endfor %}
 </ul>
+{% endif %}
 
 {% endblock %}
+
+
+
