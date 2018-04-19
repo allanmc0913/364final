@@ -14,7 +14,9 @@ There are no collections to show.
 <ul>
 {% for c in collections %}
     <li>
-        <a href="http://localhost:5000/collection/{{ c.id }}">{{ c.name }}</a>
+{#        <a href="http://localhost:5000/collection/{{ c.id }}">{{ c.name }}</a>#}
+
+        <a href="{{ url_for('collection', id=c.id) }}">{{ c.name }}
         <form action="delete/{{ c.id }}" method="POST">
             {{ form.hidden_tag() }}
             {{ form.submit() }}
