@@ -14,4 +14,13 @@
 	{{ form.submit.label }}{{ form.submit() }}
 </form>
 
+<div>
+    {% for message in get_flashed_messages() %}
+        <strong style="color:red;">{{ message }}</strong>
+    {% endfor %}
+</div>
+
+
+
+
 {% endblock %}

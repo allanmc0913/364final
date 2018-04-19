@@ -320,6 +320,9 @@ def index():
         term = get_or_create_search_term(tag)
         return redirect(url_for("search_results", search_term=term))
 
+    errors = [v for v in form.errors.values()]
+    if len(errors) > 0:
+        flash("!!!! ERRORS IN FORM SUBMISSION - " + str(errors))
     return render_template('index.html', form=form)
 
 #Route to return all the tweets from any given hashtag
@@ -362,6 +365,12 @@ def create_collection():
             tweet_lst.append(obj)
         get_or_create_collection(name=name, current_user=current_user.username, tweet_list=tweet_lst)
         return redirect(url_for('collections'))
+
+    errors = [v for v in form.errors.values()]
+    if len(errors) > 0:
+        flash("!!!! ERRORS IN FORM SUBMISSION - " + str(errors))
+
+
     return render_template('create_collection.html', form=form)
 
 #Route to view all of a user's collections by querying personaltweetcollections by current user id
