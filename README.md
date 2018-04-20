@@ -68,7 +68,11 @@ Hi there, this is my SI364 Final Project Assignment.  In a nutshell, it allows s
  **1.  Deploy the application to the internet (Heroku) — only counts if it is up when we grade / you can show proof it is up at a URL and tell us what the URL is in the README. (Heroku deployment as we taught you is 100% free so this will not cost anything.)**
  
  # Detailed Explanation of Usage
- For this web application, anyone can search for tweets given any hashtag (hashtag string should not contain the #).  Examples to search for are "goblue", "michigan", "america", etc.  Once you enter an input to search for, the results will be shown back to you based on what Twitter's Search API finds.  By default, 5 tweets will be returned.  Users have to ability to see past searched hashtags as well as a list of all tweets that have been returned (users do not need to log in for this feature).  However, once they log in, they can navigate to create a personal collection of tweets, where they enter a name for the collection, as well as select tweets to add to that collection.  They can also delete a personal tweet collection, but that user needs to be logged in first.  
+To run this application, I've included a file called "creds.txt" which contains my specific Twitter tokens, OAuth verifiers, etc.  I'm providing this publicly as the scope of this application involves public Tweet data, not my specific Twitter timeline.  There are no additional steps for you to take to get tokens to run this app; everything should be set to just run the application.
+
+If you are running this application off localhost, you will need to change the DATABASE_URL.  Currently, it is set up for Heroku's DATABASE_URL.
+
+For this web application, anyone can search for tweets given any hashtag (hashtag string should not contain the #).  Examples to search for are "goblue", "michigan", "america", etc.  Once you enter an input to search for, the results will be shown back to you based on what Twitter's Search API finds.  By default, 5 tweets will be returned.  Users have to ability to see past searched hashtags as well as a list of all tweets that have been returned (users do not need to log in for this feature).  However, once they log in, they can navigate to create a personal collection of tweets, where they enter a name for the collection, as well as select tweets to add to that collection.  They can also delete a personal tweet collection, but that user needs to be logged in first.  
  
  # Routes -> Templates
  
@@ -87,6 +91,6 @@ Hi there, this is my SI364 Final Project Assignment.  In a nutshell, it allows s
 # Pip Modules
 Here are the following pip modules to install that haven't been already used in a class session.
 
-1.  `import requests_oauthlib` is need for the Twitter Search API
+1.  `import requests_oauthlib` is needed for the Twitter Search API
 
 
