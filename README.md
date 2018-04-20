@@ -41,7 +41,7 @@ Hi there, this is my SI364 Final Project Assignment.  In a nutshell, it allows s
 
  **19.  At least one Jinja template for loop and at least two Jinja template conditionals should occur amongst the templates.**
  
- **20.  At least one request to a REST API that is based on data submitted in a WTForm OR data accessed in another way online (e.g. scraping with BeautifulSoup that does accord with other involved sites' Terms of Service, etc).
+ **20.  At least one request to a REST API that is based on data submitted in a WTForm OR data accessed in another way online (e.g. scraping with BeautifulSoup that does accord with other involved sites' Terms of Service, etc).**
 
  **21.  Your application should use data from a REST API or other source such that the application processes the data in some way and saves some information that came from the source to the database (in some way).**
  
@@ -65,7 +65,7 @@ Hi there, this is my SI364 Final Project Assignment.  In a nutshell, it allows s
  
  # Attempted Extra Credit
 
- **1.  Deploy the application to the internet (Heroku) — only counts if it is up when we grade / you can show proof it is up at a URL and tell us what the URL is in the README. (Heroku deployment as we taught you is 100% free so this will not cost anything.)
+ **1.  Deploy the application to the internet (Heroku) — only counts if it is up when we grade / you can show proof it is up at a URL and tell us what the URL is in the README. (Heroku deployment as we taught you is 100% free so this will not cost anything.)**
  
  # Detailed Explanation of Usage
  For this web application, anyone can search for tweets given any hashtag (hashtag string should not contain the #).  Examples to search for are "goblue", "michigan", "america", etc.  Once you enter an input to search for, the results will be shown back to you based on what Twitter's Search API finds.  By default, 5 tweets will be returned.  Users have to ability to see past searched hashtags as well as a list of all tweets that have been returned (users do not need to log in for this feature).  However, once they log in, they can navigate to create a personal collection of tweets, where they enter a name for the collection, as well as select tweets to add to that collection.  They can also delete a personal tweet collection, but that user needs to be logged in first.  
