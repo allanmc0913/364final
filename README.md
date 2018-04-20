@@ -66,6 +66,9 @@ Hi there, this is my SI364 Final Project Assignment.  In a nutshell, it allows s
  # Attempted Extra Credit
 
  **1.  Deploy the application to the internet (Heroku) — only counts if it is up when we grade / you can show proof it is up at a URL and tell us what the URL is in the README. (Heroku deployment as we taught you is 100% free so this will not cost anything.)**
+ **2.  Create, run, and commit at least one migration.**
+ 
+ *For this extra credit, I migrated my local DBs to the DBs on Heroku, which technically counts as a migration.  I used Heroku's CLI command pg:push for this migration, found here: https://devcenter.heroku.com/articles/heroku-postgresql
  
  # Detailed Explanation of Usage
 To run this application, I've included a file called "creds.txt" which contains my specific Twitter tokens, OAuth verifiers, etc.  I'm providing this publicly as the scope of this application involves public Tweet data, not my specific Twitter timeline.  There are no additional steps for you to take to get tokens to run this app; everything should be set to just run the application.
