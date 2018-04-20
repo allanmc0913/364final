@@ -19,7 +19,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_required, logout_user, login_user, UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
-# Application configurations
+# Application configurations taken from HW4
 app = Flask(__name__)
 app.debug = True
 app.use_reloader = True
@@ -50,20 +50,19 @@ login_manager.init_app(app)  # set up login manager
 ########################
 
 
-##Association Tables##
-
-#association table between search term and tweets
+##Association Tables modeled from HW4
+#Association table between search term and tweets
 search_tweets = db.Table('search_tweets', db.Column('search_id', db.Integer, db.ForeignKey('searchterm.id')),
                        db.Column('tweet_id', db.Integer, db.ForeignKey('tweet.id')))
 
-#association table between tweets and user collections
+#Association table between tweets and user collections
 user_collection = db.Table('user_collection', db.Column('tweet_id', db.Integer, db.ForeignKey('tweet.id')),
                            db.Column('personaltweetcollection_id', db.Integer, db.ForeignKey('personaltweetcollection.id')))
 
-## User-related Models
+
 
 # Special model for users to log in
-
+# User model class taken from HW4
 class User(UserMixin, db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
@@ -87,11 +86,12 @@ class User(UserMixin, db.Model):
 
 ## DB load function
 ## Necessary for behind the scenes login manager that comes with flask_login capabilities! Won't run without this.
+## Taken from HW4
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))  # returns User object or None
 
-
+# Models modeled from HW4
 # Model to store tweets
 class Tweet(db.Model):
     __tablename__ = "tweet"
@@ -116,7 +116,7 @@ class PersonalTweetCollection(db.Model):
     tweets = db.relationship('Tweet', secondary=user_collection,
                            backref=db.backref('personaltweetcollection', lazy='dynamic'), lazy='dynamic')
 
-
+# Model to store each search term
 class SearchTerm(db.Model):
 
     __tablename__ = "searchterm"
@@ -136,6 +136,7 @@ class SearchTerm(db.Model):
 ########################
 
 # Provided
+# Forms Taken from HW4
 class RegistrationForm(FlaskForm):
     email = StringField('Email:', validators=[Required(), Length(1, 64), Email()])
     username = StringField('Username:', validators=[Required(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
@@ -189,7 +190,7 @@ class DeleteButtonForm(FlaskForm):
 
 ##This code to connect to Twitter is taken from SI106's textbook (I tutor students in SI106)
 ##https://www.programsinformationpeople.org/runestone/static/publicPIP/APIsWithOAuth/TwitterAPI.html#using-the-provided-code-for-the-twitter-api
-##The code is provided in the textbook dealing with OAuth and Twitter in their new v1.1
+##The code is provided in the textbook dealing with OAuth and Twitter in Twitter's new v1.1
 
 def get_api_data(hashtag):
 
@@ -217,10 +218,12 @@ def get_api_data(hashtag):
     statuses = temp['statuses']
     return statuses
 
+# Modeled from HW4
 def get_tweet_by_id(id):
     t = Tweet.query.filter_by(id=id).first()
     return t
 
+# Modeled from HW4
 def get_or_create_tweet(text):
     tweet = Tweet.query.filter_by(text=text).first()
     if not tweet:
@@ -231,6 +234,7 @@ def get_or_create_tweet(text):
     else:
         return tweet
 
+# Modeled from HW4
 def get_or_create_search_term(hashtag):
     search = SearchTerm.query.filter_by(term=hashtag).first()
     if not search:
@@ -246,6 +250,7 @@ def get_or_create_search_term(hashtag):
     else:
         return hashtag
 
+# Modeled from HW4
 def get_or_create_collection(name, current_user, tweet_list=[]):
     user_id = User.query.filter_by(username=current_user).first().id
     collection = PersonalTweetCollection.query.filter_by(name=name, User_id=user_id).first()
@@ -275,6 +280,7 @@ def internal_server_error(e):
     return render_template('500.html'), 500
 
 #Login route, displays login form, queries database to see if email exists, verifies password, and if all goes well, redirects to index
+#Modeled from HW4
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -287,6 +293,7 @@ def login():
     return render_template('login.html', form=form)
 
 #Logout, redirect to index
+#Modeled from HW4
 @app.route('/logout')
 @login_required
 def logout():
@@ -295,6 +302,7 @@ def logout():
     return redirect(url_for("index"))
 
 #Register, invoke registration form, and add new user to db, redirect to index
+#Modeled from HW4
 @app.route('/register', methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
@@ -312,6 +320,7 @@ def secret():
     return "Only authenticated users can do this! Try to log in or contact the site admin."
 
 #Route shows index page with inherited nav bar -- should show hashtag search form and then get_create the search term, redirect to search results
+#Modeled from HW4
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = TweetSearchForm()
@@ -326,6 +335,7 @@ def index():
     return render_template('index.html', form=form)
 
 #Route to return all the tweets from any given hashtag
+#Modeled from HW4
 @app.route('/tweets_searched/<search_term>')
 def search_results(search_term):
     hashtag = SearchTerm.query.filter_by(term=search_term).first()
@@ -333,12 +343,14 @@ def search_results(search_term):
     return render_template('searched_tweets.html', tweets=relevant_tweets, term=hashtag)
 
 #Route to return all the search hashtags by querying search_term db
+#Modeled from HW4
 @app.route('/search_terms')
 def search_terms():
     all_terms = SearchTerm.query.all()
     return render_template("search_terms.html", all_terms=all_terms)
 
 #Route to return ALL tweets by querying tweets db
+#Modeled from HW4
 @app.route('/all_tweets')
 def all_tweets():
     tweets = Tweet.query.all()
@@ -346,6 +358,7 @@ def all_tweets():
 
 
 #Route to create a collection of tweets and then pick tweets to add to collection through form, redirect once collection made to view collections
+#Modeled from HW4
 @app.route('/create_collection', methods=["GET", "POST"])
 @login_required
 def create_collection():
@@ -374,6 +387,7 @@ def create_collection():
     return render_template('create_collection.html', form=form)
 
 #Route to view all of a user's collections by querying personaltweetcollections by current user id
+#Modeled from HW4
 @app.route('/collections', methods=["GET", "POST"])
 @login_required
 def collections():
@@ -383,6 +397,7 @@ def collections():
 
 
 #Route to view any collection by id without logging in, query personaltweetcollection by collection id number
+#Modeled from HW4
 @app.route('/collection/<id_num>')
 def single_collection(id_num):
     id_num = int(id_num)
@@ -391,6 +406,7 @@ def single_collection(id_num):
     return render_template('collection.html', collection=collection, tweets=tweets)
 
 #Route to delete a collection, must sign in first, delete from PersonalTweetCollections table
+#Modeled from HW5
 @app.route('/delete/<id_num>', methods=["GET", "POST"])
 @login_required
 def delete(id_num):

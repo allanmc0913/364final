@@ -1,0 +1,14 @@
+<h1>{{ collection.name }}</h1>
+{% extends 'index.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<h1>Welcome to my SI364 Final Project</h1>
+    <p>Hi there.  This is my SI364 Final Project application where users can search tweets based on a specific hashtag, create personalized Tweet collections, and view past searched hashtags.
+    I've implemented a login system and general format that emulates HW4.  This application is also deployed on Heroku.</p>
+
+{% endblock %}
