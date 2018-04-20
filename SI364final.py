@@ -417,7 +417,9 @@ def delete(id_num):
     flash("Deleted Collection!")
     return redirect(url_for('collections'))
 
-
+@app.route('/about')
+def about():
+    return render_template("about.html")
 
 if __name__ == '__main__':
     db.create_all()
