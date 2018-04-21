@@ -66,14 +66,15 @@ Hi there, this is my SI364 Final Project Assignment.  In a nutshell, it allows s
  # Attempted Extra Credit
 
  **1.  Deploy the application to the internet (Heroku) — only counts if it is up when we grade / you can show proof it is up at a URL and tell us what the URL is in the README. (Heroku deployment as we taught you is 100% free so this will not cost anything.)**
+ 
  **2.  Create, run, and commit at least one migration.**
  
- *For this extra credit, I migrated my local DBs to the DBs on Heroku, which technically counts as a migration.  I used Heroku's CLI command pg:push for this migration, found here: https://devcenter.heroku.com/articles/heroku-postgresql
+ *For this extra credit, I migrated my local DBs to the DBs on Heroku Cloud, which technically counts as a migration.  I used Heroku's CLI command pg:push for this migration, found here: https://devcenter.heroku.com/articles/heroku-postgresql
  
  # Detailed Explanation of Usage
 To run this application, I've included a file called "creds.txt" which contains my specific Twitter tokens, OAuth verifiers, etc.  I'm providing this publicly as the scope of this application involves public Tweet data, not my specific Twitter timeline.  There are no additional steps for you to take to get tokens to run this app; everything should be set to just run the application.
 
-If you are running this application off localhost, you will need to change the DATABASE_URL.  Currently, it is set up for Heroku's DATABASE_URL.
+If you are running this application off localhost, you will need to change the DATABASE_URL.  Currently, it is set up for Heroku's DATABASE_URL.  The deployed Heroku can be found here: http://si364finalproject-allanmc.herokuapp.com
 
 For this web application, anyone can search for tweets given any hashtag (hashtag string should not contain the #).  Examples to search for are "goblue", "michigan", "america", etc.  Once you enter an input to search for, the results will be shown back to you based on what Twitter's Search API finds.  By default, 5 tweets will be returned.  Users have to ability to see past searched hashtags as well as a list of all tweets that have been returned (users do not need to log in for this feature).  However, once they log in, they can navigate to create a personal collection of tweets, where they enter a name for the collection, as well as select tweets to add to that collection.  They can also delete a personal tweet collection, but that user needs to be logged in first.  
  
